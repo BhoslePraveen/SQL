@@ -1,0 +1,192 @@
+=============
+What is sql?
+=============
+SQL: Is a Structured query language , which is a computer language for storing,manipulating and retrieving data stored in relational data base.
+-SQL is the standard language for relational database.
+
+===============
+What is RDBMS? 
+===============
+RDBMS : Relational Database management system
+-Like MySQL,Oracle etc
+-The data in RDBMS is stored in database object called tables.
+-Tables contains rows and columns
+-Row is a horizontal entity and column is a vertical entity.
+
+==========================================
+What is DataBase Management System (DBMS)?
+==========================================
+Database management system is software that is used to manage the database.
+-Like MySQL,Oracle etc
+
+======================
+What is DataBase (DB)?
+======================
+-The database is a collection of inter-related data which is used to retrieve, insert and delete the data efficiently. 
+-It is also used to organize the data in the form of a table, schema, views, and reports, etc.
+-For example: The college Database organizes the data about the admin, staff, students and faculty etc.
+
+===============
+What is MySQL?
+===============
+MySQL is an open-source relational database management system. Its name is a combination of "My", the name of co-founder Michael Widenius's daughter My, and "SQL", the acronym for Structured Query Language.
+
+========================
+What is MySQL Workbench?
+========================
+MySQL Workbench is a visual database design tool that integrates SQL development, administration, database design, creation and maintenance into a single integrated development environment for the MySQL database system.
+-Simply put MySQL Workbench is GUI based tool to work with MySQL Servers.
+
+======================
+What is schema in SQL?
+======================
+Schema can be defined as a collection of database objects such as tables,triggers, indexes, views, stored procedure, etc which were associated with one specific database username.
+
+=============================
+How to Create schema in MYSQL
+=============================
+1. Right click on schema section >> select create schema >> Write the name of schema >> click apply.
+2. Through command : CREATE schema schema_name;
+
+=============================
+How to drop schema in MYSQL
+=============================
+1. select the schema >> right click on it >> select drop schema >> select drop now.
+Note : This will completely delete the entire schema.
+
+=============================================
+What are the subsets of SQL or SQL Commands?
+=============================================
+---------------------------------------------------------------------------------------------------
+|->DDL : Data Definition language 
+|->DDL consist of Commands like CREATE, ALTER, TRUNCATE and DROP. 
+|->These commands are used to create or modify the tables in SQL. 
+---------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------
+|->DML : Data Manipulation language 
+|->DML consist of Commands like SELECT, INSERT, UPDATE AND DELETE. 
+|->These SQL commands that deals with the manipulation of data present in the database
+---------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+|->DCL : Data Control language 
+|->DCL consist of Commands like GRANT AND REVOKE. 
+|->These commands mainly deal with the rights, permissions, and other controls of the database system. 
+-----------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------
+|->TCL : Transaction Control Language 
+|->TCL consist of Commands like COMMIT, ROLLBACK, SAVEPOINT AND SETTRANSACTION. 
+|->TCL commands are used to control the execution of a transaction: 
+-----------------------------------------------------------------------------------------------------
+
+==================
+What is a table?
+==================
+-> Table is a collection of data, organized in terms of rows and columns.
+-> In DBMS term, table is known as relation and row as tuple.
+
+===========================
+# 1 : How to CREATE table?
+===========================
+use schema_name;
+
+CREATE TABLE users (
+Id int not null auto_increment,
+LastName varchar(255),
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+primary key(Id)
+);
+
+==========================
+# 1 : How to ALTER table?
+==========================
+use schema_name;
+
+ALTER TABLE users  
+ADD Age varchar(40) NOT NULL;  
+
+===========================
+# 1 : How to RENAME table?
+===========================
+use schema_name;
+
+RENAME TABLE Users TO customer;
+
+============================
+# 1 : How to RENAME column?
+============================
+use schema_name;
+
+1> ALTER TABLE customer   
+  RENAME COLUMN Id TO cust_id; 
+
+2> ALTER TABLE customer    
+CHANGE COLUMN Age cust_age int;  
+
+============================
+# 1 : How to TURNCATE table?
+============================
+use schema_name;
+
+CREATE TABLE customer (    
+    Id int PRIMARY KEY NOT NULL,     
+    Name varchar(45) NOT NULL,     
+    Product varchar(45) DEFAULT NULL,     
+    Country varchar(25) DEFAULT NULL,     
+    Year int NOT NULL    
+);
+
+INSERT INTO customer ( Id, Name, Product, Country, Year)     
+VALUES (1, 'Stephen', 'Computer', 'USA', 2015),     
+(2, 'Joseph', 'Laptop', 'India', 2016),     
+(3, 'John', 'TV', 'USA', 2016),    
+(4, 'Donald', 'Laptop', 'England', 2015),    
+(5, 'Joseph', 'Mobile', 'India', 2015),    
+(6, 'Peter', 'Mouse', 'England', 2016); 
+
+
+TRUNCATE TABLE customer;  
+
+============================
+# 1 : How to DROP table?
+============================
+use schema_name;
+DROP TABLE table_name;
+    
+============================
+# 1 : How to COPY table?
+============================
+CREATE TABLE employee  
+SELECT * 
+FROM customer; 
+
+==================================
+# 1 : How to ADD or DELETE column?
+==================================
+use schema_name;
+
+1> ALTER TABLE customer   
+ADD COLUMN branch VARCHAR(30) DEFAULT NULL After cust_id; 
+
+2> ALTER TABLE customer  
+   DROP COLUMN branch ;  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
