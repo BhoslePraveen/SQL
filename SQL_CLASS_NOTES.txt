@@ -175,18 +175,102 @@ ADD COLUMN branch VARCHAR(30) DEFAULT NULL After cust_id;
 2> ALTER TABLE customer  
    DROP COLUMN branch ;  
 
+===============================
+Working with DML commands
+==============================
+USE user;
 
+CREATE TABLE StudentRecords(
+ Id int not null primary key,
+ FirstName varchar(255),
+ LastName varchar(255),
+ Age int  not null,
+ Percentage int not null,
+ Grade varchar(5),
+ country varchar(255));
 
+INSERT INTO studentrecords VALUES 
+(201,'akash','patil',19,93,'A','india'),
+(202,'vishal','patil',20,97,'A','india'),
+(203,'Pooja','deshmukh',21,80,'B','india'),
+(204,'Narmada','dumal',22,75,'C','india'),
+(205,'Bhaskar','nandan',20,55,'D','india'),
+(206,'vinod','mahajan',19,68,'C','india');
 
+------------------------------------------
+SELECT * FROM studentrecords;
+SELECT FirstName FROM studentrecords;
+SELECT FirstName,Grade FROM studentrecords;
 
+SELECT * FROM studentrecords WHERE Percentage >=75;
+SELECT * FROM studentrecords WHERE Grade = 'A';
+SELECT * FROM user.studentrecords where Age>19 AND Percentage >=80;
+SELECT DISTINCT Grade FROM user.studentrecords;
 
+UPDATE user.studentrecords SET LastName = 'dhumal' where Id = 204;
 
+SELECT MAX(Percentage) AS HighestMark FROM user.studentrecords;
+SELECT MIN(Percentage) AS LowestMarks FROM user.studentrecords;
+SELECT AVG(Percentage) AS Average FROM user.studentrecords;
+SELECT SUM(Age) AS sum FROM user.studentrecords;
 
+------------------------------------------------
 
+USE user;
 
+CREATE TABLE books(
+ id int primary key,
+ title varchar(255),
+ author varchar(255),
+ genre varchar(50),
+ lang varchar(10),
+ price int,
+ qty int);
 
+INSERT INTO books VALUES 
+(1,'Les Trois Mousquetaires','Alexandre Dumas','adventure','fr',1190,4),
+(2,'A Game of Thrones','George R.R. Martin','fantasy','en',849,5),
+(3,'Pride and Prejudice','Jane Austen','romance','en',999,2),
+(4,'Vampire Academy','Richelle Mead','fantasy','en',799,3),
+(5,'Ivanhoe','Walter Scott','adventure','en',999,3),
+(6,'Armance','Stendhal','romance','fr',588,1);
 
+--------------------------------------------------
+To calculate the total number of books of each genre, we’ll use the following query:
 
+SELECT genre, SUM(qty) AS total
+FROM books
+GROUP BY genre;
+
+Here, in the GROUP BY clause, we select our rows to be grouped by the column genre. Then the SUM(qty) function in the SELECT statement sums the qty values within each group (i.e. each book genre), with the result displayed in the corresponding total field:
+
+We’re again grouping our books by genre, but this time we want to calculate the average book price in each genre. The SQL query for this looks as follows:
+
+SELECT genre, AVG(price) AS avg_price
+FROM books
+GROUP BY genre;
+
+SELECT genre,
+MIN(price) AS min_price,
+AVG(price) AS avg_price,
+MAX(price) AS max_price
+FROM books
+GROUP BY genre;
+
+----------------------------------------------------------------
+GROUP BY Two Columns
+To compute the number of book titles by genre and language, we’ll use the following query:
+
+SELECT genre, lang, count(title) AS titles
+FROM books
+GROUP BY genre, lang;
+
+--------------------------------------------------------------
+SELECT COUNT(Id),Grade FROM user.studentrecords GROUP BY Grade ORDER BY COUNT(Id) ASC;
+SELECT COUNT(Id),Grade FROM user.studentrecords GROUP BY Grade HAVING COUNT(Id)>=2 ORDER BY COUNT(Id) ASC;
+
+online resource : https://learnsql.com/blog/examples-of-sql-group-by/
+                : https://www.w3schools.com/sql/
 
 
 
