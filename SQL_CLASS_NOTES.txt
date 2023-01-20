@@ -272,5 +272,102 @@ SELECT COUNT(Id),Grade FROM user.studentrecords GROUP BY Grade HAVING COUNT(Id)>
 online resource : https://learnsql.com/blog/examples-of-sql-group-by/
                 : https://www.w3schools.com/sql/
 
+===============================================================================================================
+SQL JOINS
+
+USE user;
+
+CREATE TABLE student(
+ roll_no int primary key,
+ name varchar(255),
+ city varchar(255),
+ phone varchar(50),
+ age int
+ );
+
+INSERT INTO student VALUES 
+(1,'harsh','delhi','7412589600',18),
+(2,'pratik','pune','6985214700',19),
+(3,'abhishek','pune','7894561200',20),
+(4,'dinesh','mumbai','3214569800',18),
+(5,'naveen','bangalore','9658321400',19),
+(6,'vishal','bhopal','7531596500',20),
+(7,'puneet','hyderabad','8541234500',18),
+(8,'niraj','kolkata','9654128300',19);
+
+
+CREATE TABLE course(
+ course_id int,
+roll_no int
+ );
+
+INSERT INTO course VALUES 
+(1,1),
+(2,2),
+(2,3),
+(3,4),
+(1,5),
+(4,9),
+(5,10),
+(4,11);
+
+**************
+ INNER JOIN
+**************
+SELECT course.course_id, student.name, student.age 
+FROM Student
+INNER JOIN course
+ON student.roll_no = course.roll_no;
+
+**************
+ LEFT JOIN
+**************
+SELECT student.name,course.course_id
+FROM Student
+LEFT JOIN course
+ON student.roll_no = course.roll_no;
+
+**************
+ RIGHT JOIN
+**************
+SELECT student.name,course.course_id
+FROM Student
+RIGHT JOIN course
+ON student.roll_no = course.roll_no;
+
+**************
+ FULL JOIN
+**************
+SELECT student.name,course.course_id
+FROM Student
+FULL JOIN course
+ON student.roll_no = course.roll_no;
+
+ ---------------------------------
+|Note This does not work in MYSQL|
+---------------------------------
+Alternate Solution :
+
+SELECT student.name,course.course_id
+FROM Student
+LEFT JOIN course
+ON student.roll_no = course.roll_no
+UNION
+SELECT student.name,course.course_id
+FROM Student
+RIGHT JOIN course
+ON student.roll_no = course.roll_no;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
