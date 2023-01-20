@@ -358,16 +358,58 @@ FROM Student
 RIGHT JOIN course
 ON student.roll_no = course.roll_no;
 
+===============================================================================================================
+Highest Salary Query (Most asked question in interview)
+
+USE user;
+
+CREATE TABLE employee(
+ id int primary key,
+ name varchar(255),
+ salary varchar(255)
+ );
+
+INSERT INTO employee VALUES 
+(1,'ravi','45000'),
+(2,'rohan','55000'),
+(3,'mohan','35000'),
+(4,'vishal','15000'),
+(5,'pintu','60000');
+
+******************
+With Sub-Query
+******************
+1st Highest Salary
+SELECT salary FROM (SELECT salary FROM employee ORDER BY salary DESC LIMIT 1) AS emp 
+ORDER BY salary LIMIT 1;
+
+2nd Highest Salary
+SELECT salary FROM (SELECT salary FROM employee ORDER BY salary DESC LIMIT 2) AS emp 
+ORDER BY salary LIMIT 1;
+
+******************
+Without Sub-Query
+******************
+
+SELECT salary , name FROM employee ORDER BY salary DESC LIMIT N-1,1;
+Here ---> (N-1) => Calculates the Nth highest salary.
+Here ---> (1) => Fetch Only one row/record.
+
+1st Highest Salary
+SELECT salary , name FROM employee ORDER BY salary DESC LIMIT 0,1;
+
+2nd Highest Salary
+SELECT salary , name FROM employee ORDER BY salary DESC LIMIT 1,1;
+===============================================================================================================
+Assignment : What will happen if two emloyees have same salary , How will you fetch the employee with highest salary?
+
+Hint : Correlated nested query should be designed : --> Youtube. 
+===============================================================================================================
 
 
 
-
-
-
-
-
-
-
-
-
-
+                               ############################################
+                               #                                          #
+                               #               Thank You                  #
+                               #                                          #
+                               ############################################
